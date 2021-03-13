@@ -1,9 +1,9 @@
 import { startOfHour } from 'date-fns';
-import { getCustomRepository } from 'typeorm'
+import {inject, injectable} from 'tsyringe';
 
 import Appointment from '../infra/typeorm/entities/Appointment';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import AppError from  '@shared/errors/AppError';
+import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 
 interface Request {
@@ -11,19 +11,19 @@ interface Request {
     date: Date;
 }
 
+@injectable()
 class CreateAppointmentService {
-    public async execute({provider_id, date}: Request): Promise<Appointment> {
-        const appointmentsRepository = getCustomRepository(AppointmentsRepository);
+    constructor(@inject('AppointmentsRepository') private appointmentsRepository: IAppointmentsRepository,) {}
 
+    public async execute({provider_id, date}: Request): Promise<Appointment> {
         const appointmentDate = startOfHour(date);
 
-        const findAppointmentsInSameDate = await appointmentsRepository.findByDate(appointmentDate);
+        const findAppointmentsInSameDate = await this.appointmentsRepository.findByDate(appointmentDate);
 
         if(findAppointmentsInSameDate) {
             throw new AppError('Spot not available');
         }
-        const appointment = appointmentsRepository.create({provider_id, date: appointmentDate});
-        await appointmentsRepository.save(appointment);
+        const appointment = await this.appointmentsRepository.create({provider_id, date: appointmentDate});
     
         return appointment;
     }
