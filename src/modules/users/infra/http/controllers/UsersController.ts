@@ -25,8 +25,4 @@ export default class UsersController {
     
         return res.status(201).json(userWithoutPassword);
     }
-
-    public async updateAvatar(req: Request, res: Response): Promise<Response> {
-
-    }
 }
