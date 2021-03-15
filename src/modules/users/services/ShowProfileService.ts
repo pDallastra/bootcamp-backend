@@ -12,8 +12,7 @@ interface IRequest {
 @injectable()
 class ShowProfileService {
   constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    @inject('UsersRepository') private usersRepository: IUsersRepository
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User> {

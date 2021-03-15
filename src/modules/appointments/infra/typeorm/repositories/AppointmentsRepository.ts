@@ -27,9 +27,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     }
 
     public async findByDate(date: Date): Promise<Appointment | undefined> {        
-        const findAppointment = await this.ormRepository.findOne({
-            where: {date},
-        })
+        const findAppointment = await this.ormRepository.findOne({where: {date}})
         return findAppointment || undefined;
     };
 
@@ -45,7 +43,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             provider_id,
             date: Raw(
               dateFieldName =>
-                `to_char(${dateFieldName}, MM-YYYY) = '${parsedMonth}-${year}'`,
+                `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`,
                 ),
             },
           });
@@ -67,7 +65,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             provider_id,
             date: Raw(
             dateFieldName =>
-                `to_char(${dateFieldName}, DD-MM-YYYY) = '${parsedDay}-${parsedMonth}-${year}'`,        
+                `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`,        
                 ),
             },
           });
@@ -77,32 +75,3 @@ class AppointmentsRepository implements IAppointmentsRepository {
 }
 
 export default AppointmentsRepository;
-/* --- Utilizado durante aprendizado Bootcamp ----
-
-private appointments: Appointment[] = [];
-
-interface CreateAppointmentDTO {
-    provider: string;
-    date: Date;
-}
-
-constructor() {
-    this.appointments = [];
-}
-
-public all(): Appointment[] {
-    return this.appointments;
-}
-
-
-public create({provider, date}: CreateAppointmentDTO): Appointment {
-    const appointment = new Appointment({provider, date});
-
-    this.appointments.push(appointment);
-
-    return appointment;
-}
-
-(PARA FINDBYDATE) - const findAppointmentsInSameDate = this.appointments.find(appointment => isEqual(date, appointment.date));
-
-*/ 

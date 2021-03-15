@@ -8,9 +8,7 @@ export default class ProviderAppointmentsController {
     const provider_id = req.user.id;
     const { day, month, year } = req.body;
 
-    const listProviderAppointments = container.resolve(
-      ListProviderAppointmentsService,
-    );
+    const listProviderAppointments = container.resolve(ListProviderAppointmentsService);
 
     const appointments = await listProviderAppointments.execute({
       provider_id,

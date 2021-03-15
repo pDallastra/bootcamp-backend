@@ -24,13 +24,7 @@ class UpdateProfileService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({
-    user_id,
-    name,
-    email,
-    old_password,
-    password,
-  }: IRequest): Promise<User> {
+  public async execute({user_id, name, email, old_password, password}: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {

@@ -15,9 +15,7 @@ class UsersRepository implements IUsersRepository {
     return findUser;
   }
 
-  public async findAllProviders({
-    except_user_id,
-  }: IFindAllProvidersDTO): Promise<User[]> {
+  public async findAllProviders({except_user_id}: IFindAllProvidersDTO): Promise<User[]> {
     let { users } = this;
 
     if (except_user_id) {

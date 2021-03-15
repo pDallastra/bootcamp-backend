@@ -18,11 +18,7 @@ class CreateAppointmentService {
         @inject('AppointmentsRepository') private appointmentsRepository: IAppointmentsRepository,
         ) {}
 
-        public async execute({
-            date,
-            provider_id,
-            user_id,
-          }: Request): Promise<Appointment> {
+        public async execute({date,provider_id, user_id}: Request): Promise<Appointment> {
         const appointmentDate = startOfHour(date);
 
         if (isBefore(appointmentDate, Date.now())) {
@@ -51,13 +47,3 @@ class CreateAppointmentService {
 }
 
 export default CreateAppointmentService;
-
-/* ----- Utilizado durante aprendizado Bootcamp  
-
-    private appointmentsRepository: AppointmentsRepository;
-
-    constructor(appointmentsRepository: AppointmentsRepository) {
-          this.appointmentsRepository = appointmentsRepository;
-    }
-
-*/ 

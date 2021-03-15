@@ -21,10 +21,8 @@ interface Response {
 @injectable()
 class AutheticateUserService {
     constructor(
-        @inject('UsersRepository')
-        private usersRepository: IUsersRepository,
-        @inject('HashProvider')
-        private hashProvider: IHashProvider
+        @inject('UsersRepository') private usersRepository: IUsersRepository,
+        @inject('HashProvider') private hashProvider: IHashProvider
     ) {}
 
     public async execute({email, password}: Request): Promise<Response> {

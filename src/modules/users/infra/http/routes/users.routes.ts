@@ -19,7 +19,3 @@ usersRouter.post('/', usersController.create);
 usersRouter.patch('/avatar', ensureAuthenticated, upload.single('avatar'), userAvatarController.update);
 
 export default usersRouter;
-
-/* ------- Utilizado durante aprendizado Bootcamp
-const appointmentsRepository = new AppointmentRepository();
-*/

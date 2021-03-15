@@ -15,14 +15,11 @@ interface IRequest {
 @injectable()
 class ResetPasswordService {
   constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    @inject('UsersRepository') private usersRepository: IUsersRepository,
 
-    @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository,
+    @inject('UserTokensRepository') private userTokensRepository: IUserTokensRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider
+    @inject('HashProvider') private hashProvider: IHashProvider
   ) {}
 
   public async execute({ token, password }: IRequest): Promise<void> {

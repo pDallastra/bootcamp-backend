@@ -32,10 +32,3 @@ class Appointment {
 }
 
 export default Appointment;
-
-    //Anteriormente utilizada para aprendizado durante Bootcamp
-    // constructor({provider, date}: Omit<Appointment, 'id'>) {
-    //     this.id = uuid();
-    //     this.provider = provider;
-    //     this.date = date;
-    // }

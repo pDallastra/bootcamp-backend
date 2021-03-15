@@ -19,7 +19,7 @@ describe('CreateAppointment', () => {
       return new Date(2021, 4, 10, 12).getTime();
     });
 
-    it('should be able to create a new appointment', async () => {        const fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    it('should be able to create a new appointment', async () => {const fakeAppointmentsRepository = new FakeAppointmentsRepository();
         const appointment = await createAppointment.execute({
             date: new Date(2021, 4, 10, 13),
             provider_id: 'provider-id',
@@ -30,7 +30,7 @@ describe('CreateAppointment', () => {
         expect(appointment.provider_id).toBe('provider-id');
     })
 
-    it('should not be able to create an appointment on the same time', async () => {        const fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    it('should not be able to create an appointment on the same time', async () => {const fakeAppointmentsRepository = new FakeAppointmentsRepository();
         const appointmentDate = new Date(2021, 4, 10, 11);
         await createAppointment.execute({
             date: appointmentDate,

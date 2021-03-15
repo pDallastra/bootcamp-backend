@@ -10,9 +10,7 @@ export default class ProfileController {
 
     const showProfile = container.resolve(ShowProfileService);
 
-    const user = await showProfile.execute({
-      user_id,
-    });
+    const user = await showProfile.execute({user_id});
 
     const userWithoutPassword = {
       id: user.id,
@@ -39,7 +37,6 @@ export default class ProfileController {
       password,
     });
 
-    // Com a atualização do TypeScript, isso se faz necessário
     const userWithoutPassword = {
       id: user.id,
       name: user.name,
