@@ -11,7 +11,7 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UserRepos
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 
-import EtherealMailProvider from './providers/MailProvider/implementations/EtherealMailProvier';
+import EtherealMailProvider from './providers/MailProvider/implementations/EtherealMailProvider';
 import IMailProvider from './providers/MailProvider/models/IMailProvider';
 
 import IMailTemplateProvider from './providers/MailTemplateProvider/models/IMailTemplateProvider';
